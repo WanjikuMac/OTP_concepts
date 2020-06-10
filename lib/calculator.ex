@@ -5,7 +5,7 @@ defmodule Calculator do
     Boundary.start(initial_state)
   end
 
-  #These functions are async
+  #These functions are to retrives the async fn
   def add(calculator, n), do: send(calculator, {:add, n})
   def subtract(calculator, n), do: send(calculator, {:subtract, n})
   def multiply(calculator, n), do: send(calculator, {:multiply, n})
@@ -26,5 +26,5 @@ defmodule Calculator do
         {:error, :timeout}
     end
   end
-  
+
 end
