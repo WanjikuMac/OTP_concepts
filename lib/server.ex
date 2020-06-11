@@ -12,6 +12,7 @@ defmodule Calculator.Server do
     def multiply(pid, number), do: GenServer.cast(pid, {:multiply, number})
     def divide(pid, number), do: GenServer.cast(pid, {:divide, number})
     def clear(pid), do: GenServer.cast(pid, :clear)
+    def neg(pid), do: GenServer.cast(pid, :negate)
 
     def state(pid) do
         GenServer.call(pid, :state)
@@ -36,6 +37,10 @@ defmodule Calculator.Server do
 
     def handle_cast({:divide, number}, state) do
         {:noreply, Core.divide(state, number)}
+    end
+
+    def handle_cast(:negate, state) do
+        {:noreply, Core.neg(state)}
     end
 
     def handle_cast(:clear, _state) do
