@@ -10,6 +10,7 @@ defmodule Calculator do
   def subtract(calculator, n), do: send(calculator, {:subtract, n})
   def multiply(calculator, n), do: send(calculator, {:multiply, n})
   def divide(calculator, n), do: send(calculator, {:divide, n})
+  def neg(calculator), do: send(calculator, :negate)
 
   def custom(calculator, f, n), do: send(calculator, {:custom, f, n})
 
