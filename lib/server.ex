@@ -20,6 +20,7 @@ defmodule Calculator.Server do
     
 #callbacks
     def init(number) do
+        inc_initial()
         {:ok, number}
     end
 
@@ -49,5 +50,16 @@ defmodule Calculator.Server do
 
     def handle_call(:state, _from, state) do
         {:reply, state, state}
+    end
+
+    def handle_info(:inc, state) do
+        state = Core.inc(state)
+        inc_intial()
+        {:noreply, state}
+    end
+
+    defp  inc_initial do
+        #In 1 min
+        Process.send_after(self(), :inc, 1 * 60 * 1000)
     end
 end
