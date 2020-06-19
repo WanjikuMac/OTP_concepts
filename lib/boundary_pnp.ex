@@ -1,6 +1,6 @@
 defmodule Calculator.BoundaryPnp do
     def start(initial_list) do
-        GenServer.start_link()
+        GenServer.start_link(__MODULE__, initial_list)
     end
 
     def init(initial_list) do
