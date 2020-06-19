@@ -54,11 +54,11 @@ defmodule Calculator.Server do
 
     def handle_info(:inc, state) do
         state = Core.inc(state)
-        inc_intial()
+        inc_initial()
         {:noreply, state}
     end
 
-    defp  inc_initial do
+    defp inc_initial do
         #In 1 min
         Process.send_after(self(), :inc, 1 * 60 * 1000)
     end
